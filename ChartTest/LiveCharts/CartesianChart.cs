@@ -51,7 +51,6 @@ namespace LiveCharts.Uwp
             this.SetIfNotSet(VisualElementsProperty, new VisualElementsCollection());
         }
 
-
         /// <summary>
         /// The visual elements property
         /// </summary>

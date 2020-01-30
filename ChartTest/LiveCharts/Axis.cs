@@ -711,7 +711,7 @@ namespace LiveCharts.Uwp
 
             var s = Separator as Separator;
             if (s == null) return l;
-
+            
             l.SetBinding(Shape.StrokeProperty,
                 new Binding {Path = new PropertyPath("Stroke"), Source = s});
             try

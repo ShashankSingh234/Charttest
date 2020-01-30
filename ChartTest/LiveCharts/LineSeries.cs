@@ -229,7 +229,7 @@ namespace LiveCharts.Uwp
         /// <returns></returns>
         public override IChartPointView GetPointView(ChartPoint point, string label)
         {
-            var mhr = PointGeometrySize < 10 ? 10 : PointGeometrySize;
+            var mhr = 30;//PointGeometrySize < 10 ? 10 : PointGeometrySize;
 
             var pbv = (HorizontalBezierPointView)point.View;
 
@@ -260,7 +260,9 @@ namespace LiveCharts.Uwp
                     Fill = new SolidColorBrush(Windows.UI.Colors.Transparent),
                     StrokeThickness = 0,
                     Width = mhr,
-                    Height = mhr
+                    Height = mhr,
+                    RadiusX = mhr / 2,
+                    RadiusY = mhr / 2
                 };
 
                 Canvas.SetZIndex(pbv.HoverShape, short.MaxValue);
@@ -268,7 +270,7 @@ namespace LiveCharts.Uwp
                 var uwpfChart = (Chart)Model.Chart.View;
                 uwpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
-                Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
+                //Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
             if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
@@ -281,7 +283,7 @@ namespace LiveCharts.Uwp
                     StrokeThickness = StrokeThickness,
                 };
 
-                Model.Chart.View.AddToDrawMargin(pbv.Shape);
+                //Model.Chart.View.AddToDrawMargin(pbv.Shape);
             }
 
             if (pbv.Shape != null)

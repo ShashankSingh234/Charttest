@@ -111,7 +111,7 @@ namespace LiveCharts.Uwp.Charts.Base
             Loaded += OnLoaded;
             TooltipTimeoutTimer.Tick += TooltipTimeoutTimerOnTick;
 
-            //Background color FromArgb(255, 26, 27, 35)
+            //Background color .FromArgb(255, 26, 27, 35)
             DrawMargin.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 26, 27, 35));
             // if this line is not set, then it does not detect mouse down event...
             DrawMargin.PointerPressed += OnDraggingStart;

@@ -20,24 +20,20 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using Windows.UI;
-using Windows.UI.Core;
-using Windows.UI.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 using LiveCharts.Defaults;
 using LiveCharts.Definitions.Points;
 using LiveCharts.Definitions.Series;
 using LiveCharts.Helpers;
 using LiveCharts.Uwp.Charts.Base;
 using LiveCharts.Uwp.Components;
-using LiveCharts.Uwp.Points;
-using Windows.UI.Xaml.Shapes;
-using LiveCharts.Dtos;
+using System;
+using System.Collections.Generic;
+using Windows.UI;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 
 namespace LiveCharts.Uwp
 {
@@ -489,8 +485,26 @@ namespace LiveCharts.Uwp
                     // strokeBrush.Freeze(); ???
                     SetValue(StrokeProperty, strokeBrush);
                 }
+
+                var gradientColor = new LinearGradientBrush();
+                gradientColor.StartPoint = new Windows.Foundation.Point(0.5, 0);
+                gradientColor.EndPoint = new Windows.Foundation.Point(0.5, 1);
+                gradientColor.GradientStops = new GradientStopCollection()
+                {
+                    new GradientStop
+                    {
+                        Color = Color.FromArgb(200, lineChartColor.R, lineChartColor.G, lineChartColor.B),
+                        Offset = 0
+                    },
+                    new GradientStop
+                    {
+                        Color = Color.FromArgb(255, 26, 27, 35),
+                        Offset = 1
+                    }
+                };
+
                 if (Fill == null)
-                    SetValue(FillProperty, new SolidColorBrush(lineChartColor) { Opacity = DefaultFillOpacity });
+                    SetValue(FillProperty, gradientColor);
             }
             else
             {
