@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Uwp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,25 @@ namespace ChartTest
         public MainPage()
         {
             this.InitializeComponent();
+
+            ChartControl.SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Values = new ChartValues<double> { 2, 3, 3.5, 4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 4.5, 4.4, 4.5, 4, 4.5, 5, 4.5, 4.2, 4, 3.8, 3.5, 3.3, 3, 3.5,
+                    2.5, 3, 3.5, 4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 4.5, 4.4, 4.5, 4, 4.5, 4, 3,
+                    2.5, 3, 3.5, 4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 4.5, 4.4, 4.5, 4, 4.5, 5, 4.5,
+                    2.5, 3, 3.5, 4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 4.5, 4.4, 4.5, 4, 4.5, 4, 3 },
+                },
+                new ColumnSeries
+                {
+                    Values = new ChartValues<double> { 1, 2, 1.5, 1, 1, 2, 1.5, 1, 1, 2, 1.2, 1.5, 1, 2, 2, 1.5, 1, 2, 2, 1.5, 1, 2, 2, 1.2,
+                    1, 2, 2, 1.5, 1, 2, 2, 1.4, 1, 2, 1.4, 1.1, 1, 2, 2, 1.2, 1, 2, 2, 1.4, 1, 2, 2, 1.5,
+                    1, 2, 2, 2.1, 1, 2, 2, 2.3, 1, 2, 2, 2.1, 1, 2, 2, 1.1, 1, 2, 0.9, 1.1, 1, 2, 2, 1.3,
+                    1, 2, 2 },
+                    ColumnPadding = 0
+                }
+            };
         }
     }
 }
