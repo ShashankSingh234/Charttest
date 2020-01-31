@@ -245,8 +245,8 @@ namespace LiveCharts.Uwp
             else
             {
                 pbv.IsNew = false;
-                point.SeriesView.Model.Chart.View
-                    .EnsureElementBelongsToCurrentDrawMargin(pbv.Shape);
+                //point.SeriesView.Model.Chart.View
+                //    .EnsureElementBelongsToCurrentDrawMargin(pbv.Shape);
                 point.SeriesView.Model.Chart.View
                     .EnsureElementBelongsToCurrentDrawMargin(pbv.HoverShape);
                 point.SeriesView.Model.Chart.View
@@ -270,7 +270,7 @@ namespace LiveCharts.Uwp
                 var uwpfChart = (Chart)Model.Chart.View;
                 uwpfChart.AttachHoverableEventTo(pbv.HoverShape);
 
-                //Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
+                Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
             if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;

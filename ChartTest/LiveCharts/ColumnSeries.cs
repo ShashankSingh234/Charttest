@@ -116,6 +116,8 @@ namespace LiveCharts.Uwp
         /// </summary>
         public static readonly DependencyProperty SharesPositionProperty = DependencyProperty.Register(
             "SharesPosition", typeof(bool), typeof(ColumnSeries), new PropertyMetadata(true));
+        private Rectangle highlightedRectangle;
+
         /// <summary>
         /// Gets or sets a value indicating whether this column shares space with all the column series in the same position
         /// </summary>
@@ -182,13 +184,12 @@ namespace LiveCharts.Uwp
 
                 var uwpfChart = (Chart)Model.Chart.View;
                 uwpfChart.AttachHoverableEventTo(pbv.HoverShape);
-                uwpfChart.DataHover += UwpfChart_DataHover;
-                uwpfChart.DataHoverLeave += UwpfChart_DataHoverLeave;
+                uwpfChart.DataClick += UwpfChart_DataClick;
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
             if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
-
+            
             if (DataLabels)
             {
                 pbv.DataLabel = UpdateLabelContent(new DataLabelViewModel
@@ -206,14 +207,14 @@ namespace LiveCharts.Uwp
             return pbv;
         }
 
-        private void UwpfChart_DataHover(object sender, ChartPoint chartPoint)
+        private void UwpfChart_DataClick(object sender, ChartPoint chartPoint)
         {
-            (sender as Rectangle).Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 64, 78, 171));
-        }
-
-        private void UwpfChart_DataHoverLeave(object sender, ChartPoint chartPoint)
-        {
-            (sender as Rectangle).Fill = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            if(highlightedRectangle != null)
+            {
+                highlightedRectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+            highlightedRectangle = sender as Rectangle;
+            highlightedRectangle.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 64, 78, 171));
         }
 
         #endregion
