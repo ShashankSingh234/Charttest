@@ -108,6 +108,12 @@ namespace LiveCharts.Uwp.Points
                     Canvas.SetTop(HoverShape, current.ChartLocation.Y - HoverShape.Height*.5);
                 }
 
+                if (ClickLineShape != null)
+                {
+                    Canvas.SetLeft(ClickLineShape, current.ChartLocation.X - ClickLineShape.Width * .5);
+                    Canvas.SetTop(ClickLineShape, current.ChartLocation.Y - 0);
+                }
+
                 if (Shape != null)
                 {
                     Canvas.SetLeft(Shape, current.ChartLocation.X - Shape.Width*.5);
@@ -162,11 +168,18 @@ namespace LiveCharts.Uwp.Points
                 Canvas.SetLeft(HoverShape, current.ChartLocation.X - HoverShape.Width*.5);
                 Canvas.SetTop(HoverShape, current.ChartLocation.Y - HoverShape.Height*.5);
             }
+
+            if (ClickLineShape != null)
+            {
+                Canvas.SetLeft(ClickLineShape, current.ChartLocation.X - ClickLineShape.Width * .5);
+                Canvas.SetTop(ClickLineShape, current.ChartLocation.Y - 0);
+            }
         }
 
         public override void RemoveFromView(ChartCore chart)
         {
             chart.View.RemoveFromDrawMargin(HoverShape);
+            chart.View.RemoveFromDrawMargin(ClickLineShape);
             chart.View.RemoveFromDrawMargin(Shape);
             chart.View.RemoveFromDrawMargin(DataLabel);
             Container.Segments.Remove(Segment);

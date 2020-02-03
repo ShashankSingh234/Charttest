@@ -252,6 +252,8 @@ namespace LiveCharts.Uwp
                 point.SeriesView.Model.Chart.View
                     .EnsureElementBelongsToCurrentDrawMargin(pbv.HoverShape);
                 point.SeriesView.Model.Chart.View
+                    .EnsureElementBelongsToCurrentDrawMargin(pbv.ClickLineShape);
+                point.SeriesView.Model.Chart.View
                     .EnsureElementBelongsToCurrentDrawMargin(pbv.DataLabel);
             }
 
@@ -264,16 +266,28 @@ namespace LiveCharts.Uwp
                     Width = mhr,
                     Height = mhr
                 };
+                
+                pbv.ClickLineShape = new Rectangle
+                {
+                    Fill = new SolidColorBrush(Windows.UI.Colors.Transparent),
+                    StrokeThickness = 0,
+                    Width = 2,
+                    Height = 1000,
+                };
 
                 Canvas.SetZIndex(pbv.HoverShape, short.MaxValue);
+                Canvas.SetZIndex(pbv.ClickLineShape, short.MaxValue);
 
                 var uwpfChart = (Chart)Model.Chart.View;
                 uwpfChart.AttachHoverableEventTo(pbv.HoverShape);
+                uwpfChart.AttachHoverableEventTo(pbv.ClickLineShape);
                 uwpfChart.DataClick += UwpfChart_DataClick;
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
+                Model.Chart.View.AddToDrawMargin(pbv.ClickLineShape);
             }
 
             if (pbv.HoverShape != null) pbv.HoverShape.Visibility = Visibility;
+            if (pbv.ClickLineShape != null) pbv.ClickLineShape.Visibility = Visibility;
 
             if (Math.Abs(PointGeometrySize) > 0.1 && pbv.Shape == null)
             {

@@ -30,6 +30,7 @@ namespace LiveCharts.Uwp.Points
     internal class PointView : IChartPointView
     {
         public Shape HoverShape { get; set; }
+        public Shape ClickLineShape { get; set; }
         public ContentControl DataLabel { get; set; }
         public bool IsNew { get; set; }
         public CoreRectangle ValidArea { get; }

@@ -383,19 +383,19 @@ namespace LiveCharts.Charts
                     View.ShowLegend(new CorePoint(ControlSize.Width * .5 - legendSize.Width * .5, 0));
                     break;
                 case LegendLocation.Bottom:
-                    var bot = new CorePoint(ControlSize.Width*.5 - legendSize.Width*.5,
+                    var bot = new CorePoint(ControlSize.Width * .5 - legendSize.Width * .5,
                         ControlSize.Height - legendSize.Height);
                     drawMargin.Height -= legendSize.Height;
                     View.ShowLegend(new CorePoint(bot.X, ControlSize.Height - legendSize.Height));
                     break;
                 case LegendLocation.Left:
                     drawMargin.Left = drawMargin.Left + legendSize.Width;
-                    View.ShowLegend(new CorePoint(0, ControlSize.Height*.5 - legendSize.Height*.5));
+                    View.ShowLegend(new CorePoint(0, ControlSize.Height * .5 - legendSize.Height * .5));
                     break;
                 case LegendLocation.Right:
                     drawMargin.Width -= legendSize.Width + padding;
                     View.ShowLegend(new CorePoint(ControlSize.Width - legendSize.Width,
-                        ControlSize.Height*.5 - legendSize.Height*.5));
+                        ControlSize.Height * .5 - legendSize.Height * .5));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
