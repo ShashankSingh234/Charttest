@@ -214,7 +214,8 @@ namespace LiveCharts.Uwp
                 highlightedRectangle.Fill = new SolidColorBrush(Windows.UI.Colors.Transparent);
             }
             highlightedRectangle = sender as Rectangle;
-            highlightedRectangle.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 64, 78, 171));
+            if (highlightedRectangle != null)
+                highlightedRectangle.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 64, 78, 171));
         }
 
         #endregion

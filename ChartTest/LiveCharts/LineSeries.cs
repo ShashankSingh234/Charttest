@@ -168,6 +168,8 @@ namespace LiveCharts.Uwp
             set { SetValue(AreaLimitProperty, value); }
         }
 
+        private Ellipse highlightedEllipse;
+
         #endregion
 
         #region Overridden Methods
@@ -255,21 +257,19 @@ namespace LiveCharts.Uwp
 
             if (Model.Chart.RequiresHoverShape && pbv.HoverShape == null)
             {
-                pbv.HoverShape = new Rectangle
+                pbv.HoverShape = new Ellipse
                 {
                     Fill = new SolidColorBrush(Windows.UI.Colors.Transparent),
                     StrokeThickness = 0,
                     Width = mhr,
-                    Height = mhr,
-                    RadiusX = mhr / 2,
-                    RadiusY = mhr / 2
+                    Height = mhr
                 };
 
                 Canvas.SetZIndex(pbv.HoverShape, short.MaxValue);
 
                 var uwpfChart = (Chart)Model.Chart.View;
                 uwpfChart.AttachHoverableEventTo(pbv.HoverShape);
-
+                uwpfChart.DataClick += UwpfChart_DataClick;
                 Model.Chart.View.AddToDrawMargin(pbv.HoverShape);
             }
 
@@ -311,6 +311,17 @@ namespace LiveCharts.Uwp
             }
 
             return pbv;
+        }
+
+        private void UwpfChart_DataClick(object sender, ChartPoint chartPoint)
+        {
+            if (highlightedEllipse != null)
+            {
+                highlightedEllipse.Fill = new SolidColorBrush(Windows.UI.Colors.Transparent);
+            }
+            highlightedEllipse = sender as Ellipse;
+            if (highlightedEllipse != null)
+                highlightedEllipse.Fill = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 64, 78, 171));
         }
 
         /// <summary>
